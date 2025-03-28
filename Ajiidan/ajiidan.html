@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<head>
+<style>
+    #textcontainer{
+        width: 90vw; 
+        height: 70vh;
+        margin: auto;
+        display: grid;
+        grid-template-rows: repeat(26, 20px); /* 12 rows per column */
+        grid-auto-flow: column; /* Fills downward first */
+        grid-auto-columns: 20px; /* Set fixed column widtd */
+        column-gap: 10px; /* Fixed distance between columns */
+        row-gap: 0px; /* Spacing between items */
+        white-space: nowrap; /* Prevents unintended wrapping */
+    }
+    th {
+        width:6vw;
+        text-align:center;
+        border: 1px outset black;
+        user-select:none;
+    }
+    td {
+        width:6vw;
+        text-align:center;
+        border: 1px outset black;
+        user-select: none;
+    }
+    table{
+        border: 3px outset black;
+        width: 95vw;
+        margin:auto;
+        border-collapse: collapse;
+    }
+    #button {
+        margin:auto;
+        width: 10vw;
+        display:block;
+    }
+    body {
+        background-color:white;
+    }
+    #backspace{
+        margin:auto;
+        display:block;
+    }
+</style>
+</head>
+<body>
+<div id="textcontainer"></div>
+<button id="button">Space</button>
+
+<button id="backspace">Backspace</button>
+
+<div id="scalercontainer">
+<button class="scaler" id="small">Small</button>
+<button class="scaler" id="medium">Medium</button>
+<button class="scaler" id="large">Large</button>
+</div>
+
+<table id="table">
+    <tr>
+        <th></th>
+        <th>N</th>
+        <th>W</th>
+        <th>R</th>
+        <th>Y</th>
+        <th>M</th>
+        <th>P</th>
+        <th>B</th>
+        <th>H</th>
+        <th>D</th>
+        <th>T</th>
+        <th>SH</th>
+        <th>S</th>
+        <th>G</th>
+        <th>K</th>
+    </tr>
+    <tr>
+        <td id="A">A</td>
+        <td id="NA">NA</td>
+        <td>WA</td>
+        <td>RA</td>
+        <td>YA</td>
+        <td>MA</td>
+        <td>PA</td>
+        <td>BA</td>
+        <td>HA</td>
+        <td>DA</td>
+        <td>TA</td>
+        <td>SHA</td>
+        <td>SA</td>
+        <td>GA</td>
+        <td>KA</td>
+    </tr>
+    <tr>
+        <td>E</td>
+        <td>NE</td>
+        <td>WE</td>
+        <td>RE</td>
+        <td></td>
+        <td>ME</td>
+        <td>PE</td>
+        <td>BE</td>
+        <td></td>
+        <td>DE</td>
+        <td>TE</td>
+        <td>SHE</td>
+        <td>SE</td>
+        <td>GE</td>
+        <td>KE</td>
+    </tr>
+    <tr>
+        <td>I</td>
+        <td>NI</td>
+        <td>WI</td>
+        <td>RI</td>
+        <td></td>
+        <td>MI</td>
+        <td>PI</td>
+        <td>BI</td>
+        <td></td>
+        <td>DI</td>
+        <td>TI</td>
+        <td>SHI</td>
+        <td>SI</td>
+        <td>GI</td>
+        <td>KI</td>
+    </tr>
+    <tr>
+        <td>O</td>
+        <td>NO</td>
+        <td>WO</td>
+        <td>RO</td>
+        <td>YO</td>
+        <td>MO</td>
+        <td>PO</td>
+        <td>BO</td>
+        <td>HO</td>
+        <td>DO</td>
+        <td>TO</td>
+        <td>SHO</td>
+        <td>SO</td>
+        <td>GO</td>
+        <td>KO</td>
+    </tr>
+    <tr>
+        <td>U</td>
+        <td>NU</td>
+        <td>WU</td>
+        <td>RU</td>
+        <td>YU</td>
+        <td>MU</td>
+        <td></td>
+        <td>BU</td>
+        <td></td>
+        <td></td>
+        <td>TU</td>
+        <td>SHU</td>
+        <td>SU</td>
+        <td>GU</td>
+        <td>KU</td>
+    </tr>
+
+</table>
+
+</body>
+<script>
+    var currentCharacter = String
+    var size = "100%"
+   function hoohah(){
+        for(i = 0; i < document.getElementsByTagName("TD").length; i++){
+            if (document.getElementsByTagName("TD")[i].innerText.length == 0){
+                document.getElementsByTagName("TD")[i].style.cursor = "default"
+            }else{document.getElementsByTagName("TD")[i].style.cursor = "pointer"}
+        }
+    }
+    hoohah()
+    document.getElementById("table").addEventListener("click", event=>{
+        if(event.target.tagName == "TD" && (event.target.innerText.length > 0)){
+            var file = event.target.innerText
+            currentCharacter = "/Ajiidan/Characters/" +file+ ".png"
+        var image = document.createElement("img")
+        image.src = currentCharacter
+        var widtdYep = Number(image.style.widtd)
+            image.style.width = size
+            image.style.height = size
+            document.getElementById('textcontainer').appendChild(image)
+        }
+        }
+    )
+    document.getElementById("button").addEventListener("click", ()=>{
+        var image = document.createElement("img")
+        image.src = "/Ajiidan/Space.png"
+        image.style.width = size
+        image.style.height = size
+        document.getElementById('textcontainer').appendChild(image)
+    })
+    var textcontainer = document.getElementById("textcontainer")
+    var img = document.getElementsByTagName("img")
+    document.getElementById("scalercontainer").addEventListener("click",event=>{
+        if(event.target == document.getElementById("small")){
+            textcontainer.style.gridTemplateRows = "repeat(26, 4%)"
+            textcontainer.style.rowGap = "0vw"
+            textcontainer.style.columnGap = ".72vw"
+            textcontainer.style.gridAutoColumns = "1.44vw"
+        }
+        else if(event.target == document.getElementById("medium")){
+            textcontainer.style.gridTemplateRows = "repeat(12, 8%)"
+            textcontainer.style.rowGap = ".24vw"
+            textcontainer.style.gridAutoColumns = "2.89vw"
+            textcontainer.style.columnGap = "1.08vw"
+        }
+        else if(event.target == document.getElementById("large")){
+            textcontainer.style.gridTemplateRows = "repeat(8, 12%)"
+            textcontainer.style.rowGap = ".43vw"
+            textcontainer.style.columnGap = "1.44vw"
+            textcontainer.style.gridAutoColumns = "4.34vw"
+        }
+    }
+)
+    document.getElementById("backspace").addEventListener("click", ()=>{
+        var img = document.getElementsByTagName("img")
+        img[img.length - 1].remove()
+    })
+</script>
