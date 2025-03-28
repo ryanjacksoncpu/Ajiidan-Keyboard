@@ -178,7 +178,7 @@
     document.getElementById("table").addEventListener("click", event=>{
         if(event.target.tagName == "TD" && (event.target.innerText.length > 0)){
             var file = event.target.innerText
-            currentCharacter = "/Ajiidan/Characters/" +file+ ".png"
+            currentCharacter = "Ajiidan/Characters/" +file+ ".png"
         var image = document.createElement("img")
         image.src = currentCharacter
         var widtdYep = Number(image.style.widtd)
